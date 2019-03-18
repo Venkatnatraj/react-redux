@@ -1,9 +1,24 @@
-import {AGE_UP , AGE_DOWN , HISTORY, DELETE} from '../constants/Constant';
+import {AGE_UP , AGE_DOWN , HISTORY, DELETE , LOADING} from '../constants/Constant';
 
-export  function increase (inc) {
+export  function increaseAsync (inc) {
     return{
         type : AGE_UP,
         payload : inc
+    }
+}
+
+export const loading = ()=>{
+    return{
+        type : LOADING
+    }
+}
+
+export const increase = inc =>{
+    return dispatch =>{
+        dispatch(loading())
+        setTimeout(()=>{
+            dispatch(increaseAsync(inc))
+        },2000)
     }
 }
 
